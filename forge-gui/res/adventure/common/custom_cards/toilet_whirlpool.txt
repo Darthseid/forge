@@ -1,0 +1,9 @@
+Name:Toilet Whirlpool
+ManaCost:1 C
+Types:Enchantment
+T:Mode$ Phase | Phase$ End of Turn | ValidPlayer$ Player | TriggerZones$ Battlefield | Execute$ TrigWhirlpool | TriggerDescription$ At the beginning of each end step, each player exiles their hand and draws that many cards.
+SVar:TrigWhirlpool:DB$ ChangeZoneAll | Defined$ Player | ChangeType$ Card | Origin$ Hand | Destination$ Exile | RememberChanged$ True | SubAbility$ DBDraw
+SVar:DBDraw:DB$ Draw | Defined$ Player | NumCards$ RemExiled | SubAbility$ DBCleanup
+SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
+SVar:RemExiled:Remembered$Amount
+Oracle:At the beginning of each end step, each player exiles their hand and draws that many cards.

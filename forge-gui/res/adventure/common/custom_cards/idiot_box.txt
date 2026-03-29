@@ -1,0 +1,7 @@
+Name:Idiot Box
+ManaCost:1
+Types:Artifact
+A:AB$ Dig | Cost$ T | ValidTgts$ Player | DigNum$ 2 | ChangeNum$ All | DestinationZone$ Exile | SpellDescription$ Target player exiles the top two cards of their library.
+A:AB$ Dig | Cost$ Sac<1/Artifact> | ValidTgts$ Player | DigNum$ 3 | ChangeNum$ All | DestinationZone$ Exile | SpellDescription$ Target player exiles the top three cards of their library.
+Oracle:{T}: Target player exiles the top two cards of their library.
+Sacrifice an artifact: Target player exiles the top three cards of their library.
