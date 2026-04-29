@@ -3,10 +3,9 @@ ManaCost:9 G G G G
 Types:Creature Avatar
 PT:13/13
 K:Protection:Card.cmcLE5:mana value 5 or less
-T:Mode$ SpellCast | ValidCard$ Card.Self | ValidActivatingPlayer$ You | TriggerZones$ Stack | Execute$ TrigConjure | TriggerDescription$ When you cast this spell, conjure 3 random creatures with mana value 5 or greater. You gain life equal to the number of cards in your library.
-SVar:TrigConjure:DB$ NameCard | AtRandom$ True | ValidCards$ Creature.cmcGE5 | SubAbility$ DBMake
-SVar:DBMake:DB$ MakeCard | Name$ ChosenName | Conjure$ True | Amount$ 3 | Zone$ Battlefield | SubAbility$ DBGainLife
+T:Mode$ SpellCast | ValidCard$ Card.Self | ValidActivatingPlayer$ You | TriggerZones$ Stack | Execute$ TrigConjure | TriggerDescription$ When you cast this spell, conjure 3 random cards from CARDNAME's spellbook into your hand. You gain life equal to the number of cards in your library.
+SVar:TrigConjure:DB$ MakeCard | Conjure$ True | AtRandom$ True | Amount$ 3 | Zone$ Hand | SpellbookName$ Hierophant Bio-Titan | Spellbook$ Crush of Wurms,Decree of Savagery,End-Raze Forerunners,Ezuri's Predation,Famished Worldsire,Rampaging Baloths,Ghalta; Stampede Tyrant,Hurricane,Gigantomancer,Liege of the Tangle,Praetor's Counsel,Sandwurm Convergence,Stonehoof Chieftain,Symbiotic Wurm,The Tarrasque,Thrasta; Tempest's Roar,Vorinclex; Voice of Hunger,Verdant Force,Primal Surge,Worldspine Wurm,Woodfall Primus,Apex Altisaur,Archetype of Endurance | SubAbility$ DBGainLife
 SVar:DBGainLife:DB$ GainLife | Defined$ You | LifeAmount$ X | SubAbility$ DBCleanup
 SVar:DBCleanup:DB$ Cleanup | ClearNamedCard$ True
 SVar:X:Count$ValidLibrary Card.YouCtrl
-Oracle:Protection from mana value 5 or less.\nWhen you cast this spell, conjure 3 random creatures with mana value 5 or greater. You gain life equal to the number of cards in your library.
+Oracle:Protection from mana value 5 or less.\nWhen you cast this spell, conjure 3 random cards from Hierophant Bio-Titan's spellbook into your hand. You gain life equal to the number of cards in your library.
