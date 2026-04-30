@@ -3,4 +3,6 @@ ManaCost:6 G G
 Types:Creature Rhino
 PT:8/4
 K:Trample
-Oracle:Trample
+T:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDestroy | TriggerDescription$ When this creature deals combat damage to a player, destroy all artifacts, enchantments, and nonbasic lands that player controls.
+SVar:TrigDestroy:DB$ DestroyAll | ValidCards$ Artifact.ControlledBy TriggeredTarget,Enchantment.ControlledBy TriggeredTarget,Land.nonBasic+ControlledBy TriggeredTarget
+Oracle:Trample\nWhen this creature deals combat damage to a player, destroy all artifacts, enchantments, and nonbasic lands that player controls.
