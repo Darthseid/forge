@@ -2,8 +2,9 @@ Name:Lavinia of the Tenth
 ManaCost:3 W U
 Types:Legendary Creature Human Soldier
 PT:4/4
-K:Protection from red
-T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self | Execute$ Detain | TriggerDescription$ When CARDNAME enters, detain each nonland permanent your opponents control with mana value 4 or less.
-SVar:Detain:DB$ Detain | Defined$ Valid Permanent.OppCtrl+nonLand+cmcLE4
-SVar:PlayMain1:TRUE
-Oracle:Protection from red\nWhen Lavinia of the Tenth enters, detain each nonland permanent your opponents control with mana value 4 or less. (Until your next turn, those permanents can't attack or block and their activated abilities can't be activated.)
+K:Banding
+T:Mode$ Attacks | ValidCard$ Card.Self | TriggerZones$ Battlefield | Execute$ TrigProtect | TriggerDescription$ When this creature attacks, all creatures banded with it gain protection from creatures until end of turn.
+SVar:TrigProtect:DB$ PumpAll | ValidCards$ Creature.attackersBandedWith | KW$ Protection:Creature:creatures
+T:Mode$ DamageDone | ValidSource$ Card.Self | ValidTarget$ Player,Planeswalker | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigCopy | TriggerDescription$ When this creature deals combat damage to a player or planeswalker, copy another target triggered ability. You may choose new targets for the copy.
+SVar:TrigCopy:DB$ CopySpellAbility | TgtPrompt$ Select another target triggered ability you control | ValidTgts$ Card,Emblem | TargetType$ Triggered.YouCtrl | MayChooseTarget$ True
+Oracle:Banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)\nWhen this creature attacks, all creatures banded with it gain protection from creatures until end of turn.\nWhen this creature deals combat damage to a player or planeswalker, copy another target triggered ability. You may choose new targets for the copy.
