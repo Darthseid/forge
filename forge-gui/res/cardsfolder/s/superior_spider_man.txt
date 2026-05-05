@@ -1,11 +1,14 @@
 Name:Superior Spider-Man
 Variant:UniversesWithin:FlavorName:Kavaero, Mind-Bitten
 ManaCost:2 U B
-Types:Legendary Creature Spider Human Hero
+Types:Legendary Creature Specter
 PT:4/4
-K:ETBReplacement:Copy:DBCopy:Optional
-SVar:DBCopy:DB$ Clone | Choices$ Creature.Other | ChoiceZone$ Graveyard | NewName$ Superior Spider-Man | AddTypes$ Spider & Human & Hero | SetPower$ 4 | SetToughness$ 4 | RememberCloneOrigin$ True | SubAbility$ DBImmediateTrig | SpellDescription$ Mind Swap — You may have CARDNAME enter as a copy of any creature card in a graveyard, except his name is Superior Spider-Man and he's a 4/4 Spider Human Hero in addition to his other types. When you do, exile that card.
-SVar:DBImmediateTrig:DB$ ImmediateTrigger | ConditionDefined$ Remembered | ConditionPresent$ Card | ConditionCompare$ GE1 | Execute$ TrigExile | RememberObjects$ RememberedCard | SubAbility$ DBCleanup | TriggerDescription$ When you do, exile that card.
-SVar:TrigExile:DB$ ChangeZone | Defined$ DelayTriggerRememberedLKI | Origin$ Graveyard | Destination$ Exile
-SVar:DBCleanup:DB$ Cleanup | ClearRemembered$ True
-Oracle:Mind Swap — You may have Superior Spider-Man enter as a copy of any creature card in a graveyard, except his name is Superior Spider-Man and he's a 4/4 Spider Human Hero in addition to his other types. When you do, exile that card.
+K:Flying
+T:Mode$ DamageDone | ValidSource$ Creature.YouCtrl+Wraith,Specter | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDelirium | TriggerDescription$ Whenever a Wraith or Specter you control deals combat damage to a player, that player gains two delirium counters.
+SVar:TrigDelirium:DB$ PutCounter | Defined$ TriggeredTarget | CounterType$ DELIRIUM | CounterNum$ 2
+S:Mode$ Continuous | Affected$ Player | SetMaxHandSize$ Y | Description$ The maximum hand size for each player is equal to 7 minus the number of delirium counters they have.
+SVar:X:Count$Valid Player
+SVar:Y:Number$7/Minus.X
+Oracle:Flying
+Whenever a Wraith or Specter you control deals combat damage to a player, that player gains two delirium counters.
+The maximum hand size for each player is equal to 7 minus the number of delirium counters they have.
