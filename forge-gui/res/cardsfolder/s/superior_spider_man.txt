@@ -4,11 +4,10 @@ ManaCost:2 U B
 Types:Legendary Creature Specter
 PT:4/4
 K:Flying
-T:Mode$ DamageDone | ValidSource$ Creature.YouCtrl+Wraith,Specter | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDelirium | TriggerDescription$ Whenever a Wraith or Specter you control deals combat damage to a player, that player gains two delirium counters.
-SVar:TrigDelirium:DB$ PutCounter | Defined$ TriggeredTarget | CounterType$ DELIRIUM | CounterNum$ 2
-S:Mode$ Continuous | Affected$ Player | SetMaxHandSize$ Y | Description$ The maximum hand size for each player is equal to 7 minus the number of delirium counters they have.
-SVar:X:Count$Valid Player
-SVar:Y:Number$7/Minus.X
+S:Mode$ Continuous | Affected$ Opponent | SetMaxHandSize$ 2 | Description$ Your opponents' maximum hand size is 2.
+T:Mode$ DamageDone | ValidSource$ Creature.YouCtrl+Specter,Wraith | ValidTarget$ Player | CombatDamage$ True | TriggerZones$ Battlefield | Execute$ TrigDrawLose | TriggerDescription$ Whenever a Specter or Wraith you control deals combat damage to a player, each player draws a card and loses 1 life.
+SVar:TrigDrawLose:DB$ Draw | Defined$ Player | NumCards$ 1 | SubAbility$ DBLoseLife
+SVar:DBLoseLife:DB$ LoseLife | Defined$ Player | LifeAmount$ 1
 Oracle:Flying
-Whenever a Wraith or Specter you control deals combat damage to a player, that player gains two delirium counters.
-The maximum hand size for each player is equal to 7 minus the number of delirium counters they have.
+Your opponents' maximum hand size is 2.
+Whenever a Specter or Wraith you control deals combat damage to a player, each player draws a card and loses 1 life.
