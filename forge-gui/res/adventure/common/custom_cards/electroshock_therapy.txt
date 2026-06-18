@@ -1,0 +1,9 @@
+Name:Electroshock Therapy
+ManaCost:X C
+Types:Sorcery
+A:SP$ Dig | Defined$ Opponent | DigNum$ Y | ChangeNum$ All | DestinationZone$ Exile | SubAbility$ DBMaybeTokens | SpellDescription$ Each opponent exiles the top three times X cards of their library. Then if a library has 30 or fewer cards in it, create three tapped Inhibitor tokens.
+SVar:DBMaybeTokens:DB$ Token | TokenScript$ c_a_inhibitor_counter_sac | TokenAmount$ 3 | TokenTapped$ True | ConditionCheckSVar$ LibCount | ConditionSVarCompare$ LE30
+SVar:X:Count$xPaid
+SVar:Y:SVar$X/Thrice
+SVar:LibCount:PlayerCountPlayers$LowestValidLibrary Card.YouOwn
+Oracle:Each opponent exiles three times X cards from the top of their library. Then if a library has 30 or fewer cards in it, create three tapped Inhibitor tokens.

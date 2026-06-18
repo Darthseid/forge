@@ -1,0 +1,6 @@
+Name:Mind Lock
+ManaCost:C
+Types:Instant
+A:SP$ Dig | ValidTgts$ Player | DigNum$ 8 | ChangeNum$ All | DestinationZone$ Exile | SubAbility$ DBToken | SpellDescription$ Target player exiles the top eight cards of their library. Create an Inhibitor token.
+SVar:DBToken:DB$ Token | TokenScript$ c_a_inhibitor_counter_sac | TokenAmount$ 1
+Oracle:Target player exiles the top eight cards of their library. Create an Inhibitor token.

@@ -1,0 +1,11 @@
+Name:Bollards
+ManaCost:1 C
+Types:Creature
+PT:1/4
+K:Defender,Lifelink
+T:Mode$ Attacks | ValidCard$ Creature | Attacked$ You | TriggerZones$ Battlefield | Execute$ TrigStun | TriggerDescription$ Whenever a creature attacks you, put a stun counter on it, then proliferate if a library has 30 or fewer cards in it.
+SVar:TrigStun:DB$ PutCounter | Defined$ TriggeredAttacker | CounterType$ STUN | CounterNum$ 1 | SubAbility$ DBProlif
+SVar:DBProlif:DB$ Proliferate | ConditionCheckSVar$ LibCount | ConditionSVarCompare$ LE30
+SVar:LibCount:PlayerCountPlayers$LowestValidLibrary Card.YouOwn
+Oracle:Defender, lifelink
+Whenever a creature attacks you, put a stun counter on it, then proliferate if a library has 30 or fewer cards in it.

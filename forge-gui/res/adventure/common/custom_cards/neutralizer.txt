@@ -1,0 +1,13 @@
+Name:Neutralizer
+ManaCost:2 C C
+Types:Planeswalker
+Loyalty:3
+R:Event$ Moved | ActiveZones$ Battlefield | Destination$ Graveyard | ValidCard$ Card,Token | ReplaceWith$ ExileInstead | Description$ If a card or token would be put into a graveyard from anywhere, exile it instead.
+A:AB$ Token | Cost$ AddCounter<2/LOYALTY> | Planeswalker$ True | TokenScript$ c_a_inhibitor_counter_sac | TokenAmount$ 2 | SpellDescription$ Create two Inhibitor tokens.
+A:AB$ Fight | Cost$ SubCounter<3/LOYALTY> | Planeswalker$ True | ValidTgts$ Creature | TargetMin$ 2 | TargetMax$ 2 | SpellDescription$ Two target creatures fight each other.
+A:AB$ ChangeZone | Cost$ SubCounter<7/LOYALTY> | Planeswalker$ True | Ultimate$ True | Origin$ Exile | Destination$ Battlefield | ValidTgts$ Permanent.faceUp+inZoneExile | TgtPrompt$ Select up to four face-up exiled permanents | TargetMin$ 0 | TargetMax$ 4 | GainControl$ True | SpellDescription$ Put four target face-up permanents from exile onto the battlefield under your control.
+SVar:ExileInstead:DB$ ChangeZone | Hidden$ True | Defined$ ReplacedCard | Origin$ All | Destination$ Exile
+Oracle:If a card or token would be put into a graveyard from anywhere, exile it instead.
+[+2]: Create two Inhibitor tokens.
+[-3]: Two target creatures fight each other.
+[-7]: Put four target face-up permanents from exile onto the battlefield under your control.

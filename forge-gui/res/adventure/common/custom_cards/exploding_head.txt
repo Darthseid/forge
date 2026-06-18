@@ -1,0 +1,7 @@
+Name:Exploding Head
+ManaCost:2 C
+Types:Sorcery
+A:SP$ Dig | ValidTgts$ Player | DigNum$ X | ChangeNum$ All | DestinationZone$ Exile | SubAbility$ DBToken | SpellDescription$ Target player exiles cards from the top of their library equal to your life total. Create two Inhibitor tokens.
+SVar:DBToken:DB$ Token | TokenScript$ c_a_inhibitor_counter_sac | TokenAmount$ 2
+SVar:X:Count$YourLifeTotal
+Oracle:Target player exiles cards from the top of their library equal to your life total. Create two Inhibitor tokens.

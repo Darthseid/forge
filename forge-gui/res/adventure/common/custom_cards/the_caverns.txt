@@ -1,0 +1,6 @@
+Name:The Caverns
+ManaCost:no cost
+Types:Land
+T:Mode$ Phase | Phase$ Upkeep | ValidPlayer$ You | TriggerZones$ Battlefield | Execute$ TrigExile | TriggerDescription$ At the beginning of your upkeep, each player exiles the top card of their library.
+SVar:TrigExile:DB$ Dig | Defined$ Player | DigNum$ 1 | ChangeNum$ All | DestinationZone$ Exile
+Oracle:At the beginning of your upkeep, each player exiles the top card of their library.

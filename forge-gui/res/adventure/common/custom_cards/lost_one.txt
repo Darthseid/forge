@@ -1,0 +1,8 @@
+Name:Lost One
+ManaCost:C
+Types:Creature
+PT:3/1
+R:Event$ DamageDone | ActiveZones$ Battlefield | IsCombat$ True | ValidSource$ Card.Self | ValidTarget$ Player | ReplaceWith$ ExileInstead | ExecuteMode$ PerTarget | Description$ If CARDNAME would deal combat damage to a player, prevent that damage. That player exiles cards from the top of their library equal to the damage prevented this way.
+SVar:X:ReplaceCount$DamageAmount
+SVar:ExileInstead:DB$ Dig | Defined$ ReplacedTarget | DigNum$ X | ChangeNum$ All | DestinationZone$ Exile
+Oracle:If Lost One would deal combat damage to a player, prevent that damage. That player exiles cards from the top of their library equal to the damage prevented this way.
