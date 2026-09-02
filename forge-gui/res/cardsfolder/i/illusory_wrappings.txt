@@ -1,8 +1,11 @@
 Name:Illusory Wrappings
 ManaCost:2 U
-Types:Enchantment Aura
-K:Enchant:Creature
-SVar:AttachAILogic:Curse
-S:Mode$ Continuous | Affected$ Creature.EnchantedBy | SetPower$ 0 | SetToughness$ 2 | Description$ Enchanted creature has base power and toughness 0/2.
-SVar:NonStackingAttachEffect:True
-Oracle:Enchant creature\nEnchanted creature has base power and toughness 0/2.
+Types:Enchantment
+K:Kicker:U U
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Card.Self+kicked | Execute$ TrigReturnAll | TriggerDescription$ When CARDNAME enters, if it was kicked, return all creatures to their owners' hands.
+SVar:TrigReturnAll:DB$ ChangeZoneAll | ChangeType$ Creature | Origin$ Battlefield | Destination$ Hand | SpellDescription$ Return all creatures to their owners' hands.
+T:Mode$ ChangesZone | Origin$ Any | Destination$ Battlefield | ValidCard$ Creature | TriggerZones$ Battlefield | Execute$ TrigVanishing | TriggerDescription$ Whenever a creature enters, put two time counters on it. It gains vanishing.
+SVar:TrigVanishing:DB$ PutCounter | Defined$ TriggeredCardLKICopy | CounterType$ TIME | CounterNum$ 2 | SubAbility$ DBVanishing
+SVar:DBVanishing:DB$ Pump | Defined$ TriggeredCardLKICopy | KW$ Vanishing | Duration$ Permanent
+DeckHas:Ability$Counters
+Oracle:Kicker {U}{U}\nWhen Illusory Wrappings enters, if it was kicked, return all creatures to their owners' hands.\nWhenever a creature enters, put two time counters on it. It gains vanishing.
